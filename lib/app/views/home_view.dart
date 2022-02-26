@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_app/app/models/task.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo_page.dart';
 import 'package:starter_app/app/views/tasks/mytask/mytask.dart';
@@ -11,17 +12,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> tasks = [
-      {
-        "name": "Daglo",
-        "widget": Daglo(),
-        "page": DagloPage(),
-      },
-      {
-        "name": "This is my task",
-        "widget": MyTask(),
-        "page": MyTaskPage(),
-      },
+    List<Task> tasks = [
+      Task(name: "Daglo", widget: Daglo(), page: DagloPage()),
+      Task(name: "This is my task", widget: MyTask(), page: MyTaskPage()),
     ];
 
     return Scaffold(
@@ -33,10 +26,11 @@ class HomeView extends StatelessWidget {
             ...tasks
                 .map(
                   (e) => GridItem(
-                      serialNumber: tasks.indexOf(e) + 1,
-                      name: e['name'],
-                      widget: e['widget'],
-                      page: e['page']),
+                    serialNumber: tasks.indexOf(e) + 1,
+                    name: e.name,
+                    widget: e.widget,
+                    page: e.page,
+                  ),
                 )
                 .toList(),
           ],
