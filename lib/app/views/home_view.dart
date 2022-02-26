@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_app/app/views/tasks/daglo.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -7,17 +8,36 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> tasks = [
+      {
+        "name": "Daglo",
+        "widget": Daglo(),
+      },
+      {
+        "name": "ABC",
+        "widget": Daglo(),
+      },
+      {
+        "name": "Savan",
+        "widget": Daglo(),
+      },
+    ];
+
     return Scaffold(
       appBar: AppBar(title: Text("Tasks")),
       body: Container(
         child: GridView.count(
           crossAxisCount: 2,
           children: [
-            GridItem(),
-            GridItem(),
-            GridItem(),
-            GridItem(),
-            GridItem(),
+            ...tasks
+                .map(
+                  (e) => GridItem(
+                    serialNumber: tasks.indexOf(e) + 1,
+                    name: e['name'],
+                    widget: e['widget'],
+                  ),
+                )
+                .toList(),
           ],
         ),
       ),
@@ -26,8 +46,14 @@ class HomeView extends StatelessWidget {
 }
 
 class GridItem extends StatelessWidget {
+  final int serialNumber;
+  final String name;
+  final Widget widget;
   const GridItem({
     Key? key,
+    required this.serialNumber,
+    required this.name,
+    required this.widget,
   }) : super(key: key);
 
   @override
@@ -36,10 +62,7 @@ class GridItem extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Image.network(
-            "https://images.unsplash.com/photo-1645800812289-d9d5af166ccb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-            fit: BoxFit.fitWidth,
-          ),
+          widget,
           Positioned(
             bottom: 0,
             left: 0,
@@ -48,7 +71,7 @@ class GridItem extends StatelessWidget {
               padding: EdgeInsets.all(10),
               color: Colors.black.withOpacity(0.7),
               child: Text(
-                '1. Daglo',
+                '${serialNumber}. ${name}',
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
