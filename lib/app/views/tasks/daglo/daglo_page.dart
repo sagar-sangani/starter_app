@@ -8,9 +8,9 @@ class DagloPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Aa maaro Daglo"),
+        title: const Text("Aa maaro Daglo"),
       ),
-      body: Daglo(),
+      body: const Daglo(),
     );
   }
 }

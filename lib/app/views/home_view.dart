@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:starter_app/app/models/task.dart';
+import 'package:starter_app/app/views/tasks/abcd/abcd.dart';
+import 'package:starter_app/app/views/tasks/abcd/abcd_page.dart';
+import 'package:starter_app/app/views/tasks/chitrakala/chitrakala.dart';
+import 'package:starter_app/app/views/tasks/chitrakala/chitrakala_page.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo_page.dart';
-import 'package:starter_app/app/views/tasks/mytask/mytask.dart';
-import 'package:starter_app/app/views/tasks/mytask/mytask_page.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -13,28 +15,41 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Task> tasks = [
-      Task(name: "Daglo", widget: Daglo(), page: DagloPage()),
-      Task(name: "This is my task", widget: MyTask(), page: MyTaskPage()),
+      Task(
+        name: "Daglo",
+        widget: const Daglo(),
+        page: const DagloPage(),
+      ),
+      Task(
+        name: "This is my Painting",
+        widget: const Chitrakala(),
+        page: const ChitrakalaPage(),
+      ),
+      Task(
+        name: 'Abcd',
+        widget: const Abcd(),
+        page: const AbcdPage(),
+      )
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text("Tasks")),
-      body: Container(
-        child: GridView.count(
-          crossAxisCount: 2,
-          children: [
-            ...tasks
-                .map(
-                  (e) => GridItem(
-                    serialNumber: tasks.indexOf(e) + 1,
-                    name: e.name,
-                    widget: e.widget,
-                    page: e.page,
-                  ),
-                )
-                .toList(),
-          ],
-        ),
+      appBar: AppBar(
+        title: const Text("Tasks"),
+      ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: [
+          ...tasks
+              .map(
+                (e) => GridItem(
+                  serialNumber: tasks.indexOf(e) + 1,
+                  name: e.name,
+                  widget: e.widget,
+                  page: e.page,
+                ),
+              )
+              .toList(),
+        ],
       ),
     );
   }
@@ -61,31 +76,29 @@ class GridItem extends StatelessWidget {
           MaterialPageRoute(builder: (context) => page),
         );
       },
-      child: Container(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            widget,
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                padding: EdgeInsets.all(10),
-                color: Colors.black.withOpacity(0.7),
-                child: Text(
-                  '${serialNumber}. ${name}',
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          widget,
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              color: Colors.black.withOpacity(0.7),
+              child: Text(
+                '$serialNumber. $name',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

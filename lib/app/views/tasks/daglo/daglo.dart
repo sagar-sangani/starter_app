@@ -71,7 +71,7 @@ class Daglo extends StatelessWidget {
               height: 50 * size,
               width: 250 * size,
             ),
-            Container(
+            SizedBox(
               height: 200 * size,
               width: 200 * size,
               child: Row(
@@ -90,7 +90,7 @@ class Daglo extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               height: 50 * size,
               width: 300 * size,
               child: Row(
