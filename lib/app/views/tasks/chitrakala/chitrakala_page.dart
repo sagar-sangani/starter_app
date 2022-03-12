@@ -8,7 +8,7 @@ class ChitrakalaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Aa maru Painting"),
+        title: const Text("Aa maru Chitra"),
       ),
       body: const Chitrakala(),
     );
