@@ -6,6 +6,8 @@ import 'package:starter_app/app/views/tasks/chitrakala/chitrakala.dart';
 import 'package:starter_app/app/views/tasks/chitrakala/chitrakala_page.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo_page.dart';
+import 'package:starter_app/app/views/tasks/polygon/polygon.dart';
+import 'package:starter_app/app/views/tasks/polygon/polygon_page.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -27,9 +29,14 @@ class HomeView extends StatelessWidget {
       ),
       Task(
         name: 'Abcd',
-        widget: const Abcd(),
+        widget: const Abcd(showButton: false),
         page: const AbcdPage(),
-      )
+      ),
+      Task(
+        name: 'Polygon',
+        widget: Polygon(),
+        page: PolygonPage(),
+      ),
     ];
 
     return Scaffold(

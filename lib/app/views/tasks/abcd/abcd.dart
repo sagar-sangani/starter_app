@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Abcd extends StatefulWidget {
-  const Abcd({Key? key}) : super(key: key);
+  final bool showButton;
+  const Abcd({Key? key, this.showButton = true}) : super(key: key);
 
   @override
   State<Abcd> createState() => _AbcdState();
@@ -48,22 +49,27 @@ class _AbcdState extends State<Abcd> {
       'Z',
     ];
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Text(
-            nextText[textIndex],
-            style: TextStyle(
-              fontSize: 100,
+    return LayoutBuilder(builder: (context, constraints) {
+      double size = constraints.maxWidth;
+
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Text(
+              nextText[textIndex],
+              style: TextStyle(
+                fontSize: size * 0.8,
+              ),
             ),
           ),
-        ),
-        ElevatedButton(
-          onPressed: () => changeText(),
-          child: Text('Next'),
-        ),
-      ],
-    );
+          if (widget.showButton)
+            ElevatedButton(
+              onPressed: () => changeText(),
+              child: const Text('Next'),
+            ),
+        ],
+      );
+    });
   }
 }

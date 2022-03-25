@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Sagar Sangani",
+      debugShowCheckedModeBanner: false,
       home: HomeView(),
     );
   }
