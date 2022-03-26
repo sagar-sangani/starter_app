@@ -43,7 +43,7 @@ class MyTask extends CustomPainter {
     double minSize = size.width < size.height ? size.width : size.height;
 
     int sides = 6;
-    double radius = minSize / 2;
+    double radius = minSize / 3;
     double radians = 0.0;
 
     var path = Path();
