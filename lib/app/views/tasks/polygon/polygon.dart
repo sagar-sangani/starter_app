@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class Polygon extends StatelessWidget {
+  const Polygon({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AnimatedRotation(
@@ -40,7 +42,7 @@ class MyTask extends CustomPainter {
       ..strokeCap = StrokeCap.round;
     double minSize = size.width < size.height ? size.width : size.height;
 
-    int sides = 5;
+    int sides = 6;
     double radius = minSize / 2;
     double radians = 0.0;
 

@@ -6,6 +6,8 @@ import 'package:starter_app/app/views/tasks/chitrakala/chitrakala.dart';
 import 'package:starter_app/app/views/tasks/chitrakala/chitrakala_page.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo_page.dart';
+import 'package:starter_app/app/views/tasks/oxytocin/oxytocin.dart';
+import 'package:starter_app/app/views/tasks/oxytocin/oxytocin_page.dart';
 import 'package:starter_app/app/views/tasks/polygon/polygon.dart';
 import 'package:starter_app/app/views/tasks/polygon/polygon_page.dart';
 
@@ -36,6 +38,11 @@ class HomeView extends StatelessWidget {
         name: 'Polygon',
         widget: Polygon(),
         page: PolygonPage(),
+      ),
+      Task(
+        name: 'Oxytocin',
+        widget: Oxytocin(),
+        page: OxytocinPage(),
       ),
     ];
 
