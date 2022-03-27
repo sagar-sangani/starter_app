@@ -131,7 +131,7 @@ class MyTask extends CustomPainter {
     var minSize = size.width < size.height ? size.width : size.height;
 //FOR HEXAGON
     var hexagonSides = 6;
-    var hSide = minSize / 6;
+    var hSide = minSize / 7;
     var hradians = math.pi / hexagonSides;
     var hx = hSide * math.cos(hradians);
     var hy = hSide * math.sin(hradians); //FOR HEXAGON
@@ -165,12 +165,12 @@ class MyTask extends CustomPainter {
 
 //FOR TRIANGLE
     var triangleSides = 3;
-    var tSide = minSize / 4;
+    var tSide = minSize / 5;
     var tradians = math.pi / triangleSides;
     var tWidth = tSide * math.cos(tradians);
     var tHeight = tSide * math.sin(tradians);
 
-    //Triabgle hpath
+    //Triangle path
     final tpath = Path();
 
     //1 tpath Vertical

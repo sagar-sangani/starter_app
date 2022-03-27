@@ -8,7 +8,7 @@ class OxytocinPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Aa maru Chitra"),
+        title: const Text("Aa maru Oxytocin"),
       ),
       body: const Oxytocin(),
     );
