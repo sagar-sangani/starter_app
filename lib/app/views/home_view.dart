@@ -6,10 +6,14 @@ import 'package:starter_app/app/views/tasks/chitrakala/chitrakala.dart';
 import 'package:starter_app/app/views/tasks/chitrakala/chitrakala_page.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo_page.dart';
-import 'package:starter_app/app/views/tasks/oxytocin/oxytocin.dart';
-import 'package:starter_app/app/views/tasks/oxytocin/oxytocin_page.dart';
+import 'package:starter_app/app/views/tasks/hexagon/hexagon.dart';
+import 'package:starter_app/app/views/tasks/hexagon/hexagon_page.dart';
+import 'package:starter_app/app/views/tasks/pentagon/pentagon.dart';
+import 'package:starter_app/app/views/tasks/pentagon/pentagon_page.dart';
 import 'package:starter_app/app/views/tasks/polygon/polygon.dart';
 import 'package:starter_app/app/views/tasks/polygon/polygon_page.dart';
+import 'package:starter_app/app/views/tasks/triangle/triangle.dart';
+import 'package:starter_app/app/views/tasks/triangle/triangle_page.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -36,13 +40,23 @@ class HomeView extends StatelessWidget {
       ),
       Task(
         name: 'Polygon',
-        widget: Polygon(),
-        page: PolygonPage(),
+        widget: const Polygon(),
+        page: const PolygonPage(),
       ),
       Task(
-        name: 'Oxytocin',
-        widget: Oxytocin(),
-        page: OxytocinPage(),
+        name: 'Hexagon',
+        widget: const Hexagon(),
+        page: const HexagonPage(),
+      ),
+      Task(
+        name: 'Triangle',
+        widget: const Triangle(),
+        page: const TrianglePage(),
+      ),
+      Task(
+        name: 'Pentagon',
+        widget: const Pentagon(),
+        page: const PentagonPage(),
       ),
     ];
 
