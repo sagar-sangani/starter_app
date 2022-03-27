@@ -35,6 +35,8 @@ class MyTask extends CustomPainter {
 
     // Traiangle
 
+    //tvertical
+
     //t1
     final t1 = Path();
     t1.moveTo(size.width / 2, size.height / 2);

@@ -42,7 +42,7 @@ class MyTask extends CustomPainter {
       ..strokeCap = StrokeCap.round;
     double minSize = size.width < size.height ? size.width : size.height;
 
-    int sides = 6;
+    int sides = 5;
     double radius = minSize / 3;
     double radians = 0.0;
 
