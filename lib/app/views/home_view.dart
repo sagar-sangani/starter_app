@@ -4,6 +4,8 @@ import 'package:starter_app/app/views/tasks/abcd/abcd.dart';
 import 'package:starter_app/app/views/tasks/abcd/abcd_page.dart';
 import 'package:starter_app/app/views/tasks/chitrakala/chitrakala.dart';
 import 'package:starter_app/app/views/tasks/chitrakala/chitrakala_page.dart';
+import 'package:starter_app/app/views/tasks/colour_shadding/color_shadding.dart';
+import 'package:starter_app/app/views/tasks/colour_shadding/color_shadding_page.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo_page.dart';
 import 'package:starter_app/app/views/tasks/hexagon/hexagon.dart';
@@ -57,6 +59,11 @@ class HomeView extends StatelessWidget {
         name: 'Pentagon',
         widget: const Pentagon(),
         page: const PentagonPage(),
+      ),
+      Task(
+        name: 'Color Shaddings',
+        widget: const ColorShadding(),
+        page: const ColorShaddingPage(),
       ),
     ];
 

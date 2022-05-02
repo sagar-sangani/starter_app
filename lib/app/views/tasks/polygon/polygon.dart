@@ -44,7 +44,7 @@ class MyTask extends CustomPainter {
 
     int sides = 5;
     double radius = minSize / 3;
-    double radians = 0.0;
+    double radians = 60.0;
 
     var path = Path();
 
@@ -61,7 +61,7 @@ class MyTask extends CustomPainter {
       double y = radius * math.sin(radians + angle * i) + center.dy;
       path.lineTo(x, y);
     }
-    path.close();
+    // path.close();
     canvas.drawPath(path, paint);
 
     // FOR DRAW CIRCLE

@@ -136,8 +136,8 @@ class MyTask extends CustomPainter {
     double minSize = size.width < size.height ? size.width : size.height;
     double pside = minSize / 6;
 
-    double angle1 = 2 * math.pi / 5;
-    double angle2 = math.pi / 5;
+    double angle1 = 2 * math.pi / 5; // angle 72
+    double angle2 = math.pi / 5; // angle 36
 
     double px1 = pside * math.cos(angle1);
     double py1 = pside * math.sin(angle1);
@@ -148,17 +148,17 @@ class MyTask extends CustomPainter {
     final path = Path();
 
     //p1
-    path.moveCenter(width, height);
+    path.moveCenter(width / 2, height / 2);
     path.relativeMoveTo(-pside / 2, -height / 5);
     path.drawPantagonLineRight(pside);
     path.relativeMoveTo(-pside, 0);
-    path.drawVtklPantagonLineTopLeftWithAngle1(px1, py1);
-    path.drawVtklPantagonLineTopRightWithAngle2(px2, py2);
-    path.drawVtklPantagonLineBottomRightWithAngle2(px2, py2);
     path.drawVtklPantagonLineBottomLeftWithAngle1(px1, py1);
+    path.drawVtklPantagonLineBottomRightWithAngle2(px2, py2);
+    path.drawVtklPantagonLineTopRightWithAngle2(px2, py2);
+    path.drawVtklPantagonLineTopLeftWithAngle1(px1, py1);
 
     //p2
-    path.moveCenter(width, height);
+    path.moveCenter(width / 2, height / 2);
     path.relativeMoveTo(-pside / 2, 0);
     path.drawPantagonLineBottom(pside);
     path.drawHzntlPantagonLineBottomRightWithAngle1(py1, px1);
