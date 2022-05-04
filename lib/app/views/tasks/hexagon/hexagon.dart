@@ -7,19 +7,17 @@ class Hexagon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: CustomPaint(
-              painter: MyTask(),
-              size: MediaQuery.of(context).size,
-              child: Container(),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          child: CustomPaint(
+            painter: MyTask(),
+            size: MediaQuery.of(context).size,
+            child: Container(),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -112,8 +110,8 @@ class MyTask extends CustomPainter {
 
     //p4
     var pSide = minSize / 7;
-    var angle1 = math.pi/6; // angle of 60
-    var angle2 = 2*math.pi/5; //angle of 72
+    var angle1 = math.pi / 6; // angle of 60
+    var angle2 = 2 * math.pi / 5; //angle of 72
     final ppath = Path();
     ppath.moveCenter(width, height);
     ppath.relativeMoveTo(-2 * hx, 35);

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:starter_app/app/theme/tw_colors.dart';
 
 import 'package:starter_app/app/views/tasks/triangle/triangle.dart';
 
@@ -11,6 +12,7 @@ class TrianglePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Aa maru Triangle"),
+        backgroundColor: TWColors.blue[400],
       ),
       body: Triangle(),
     );

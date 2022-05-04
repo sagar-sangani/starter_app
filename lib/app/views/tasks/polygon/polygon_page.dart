@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:starter_app/app/theme/tw_colors.dart';
 import 'package:starter_app/app/views/tasks/polygon/polygon.dart';
 
 class PolygonPage extends StatelessWidget {
@@ -10,6 +11,7 @@ class PolygonPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Aa maru Polygon"),
+        backgroundColor: TWColors.blue[400],
       ),
       body: Polygon(),
     );

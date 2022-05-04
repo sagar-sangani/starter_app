@@ -7,25 +7,17 @@ class Pentagon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedRotation(
-      turns: 5,
-      duration: const Duration(
-        minutes: 1,
-      ),
-      child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: CustomPaint(
-                painter: MyTask(),
-                size: MediaQuery.of(context).size,
-                child: Container(),
-              ),
-            ),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          child: CustomPaint(
+            painter: MyTask(),
+            size: MediaQuery.of(context).size,
+            child: Container(),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

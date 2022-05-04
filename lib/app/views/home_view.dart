@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starter_app/app/models/task.dart';
+import 'package:starter_app/app/theme/tw_colors.dart';
 import 'package:starter_app/app/views/tasks/abcd/abcd.dart';
 import 'package:starter_app/app/views/tasks/abcd/abcd_page.dart';
 import 'package:starter_app/app/views/tasks/chitrakala/chitrakala.dart';
@@ -10,6 +11,7 @@ import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo_page.dart';
 import 'package:starter_app/app/views/tasks/hexagon/hexagon.dart';
 import 'package:starter_app/app/views/tasks/hexagon/hexagon_page.dart';
+import 'package:starter_app/app/views/tasks/login/login_page.dart';
 import 'package:starter_app/app/views/tasks/pentagon/pentagon.dart';
 import 'package:starter_app/app/views/tasks/pentagon/pentagon_page.dart';
 import 'package:starter_app/app/views/tasks/polygon/polygon.dart';
@@ -65,11 +67,25 @@ class HomeView extends StatelessWidget {
         widget: const ColorShadding(),
         page: const ColorShaddingPage(),
       ),
+      Task(
+        name: 'Login Screen',
+        widget: Container(
+          color: TWColors.slate[100],
+          child: const Center(
+            child: Text(
+              'Login Screen',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        page: const LoginPage(),
+      ),
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Tasks"),
+        backgroundColor: TWColors.blue[400],
       ),
       body: GridView.count(
         crossAxisCount: 2,
