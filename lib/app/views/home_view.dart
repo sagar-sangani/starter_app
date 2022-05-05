@@ -9,6 +9,8 @@ import 'package:starter_app/app/views/tasks/colour_shadding/color_shadding.dart'
 import 'package:starter_app/app/views/tasks/colour_shadding/color_shadding_page.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo_page.dart';
+import 'package:starter_app/app/views/tasks/family_tree/family_tree.dart';
+import 'package:starter_app/app/views/tasks/family_tree/family_tree_page.dart';
 import 'package:starter_app/app/views/tasks/hexagon/hexagon.dart';
 import 'package:starter_app/app/views/tasks/hexagon/hexagon_page.dart';
 import 'package:starter_app/app/views/tasks/login/login_page.dart';
@@ -79,6 +81,11 @@ class HomeView extends StatelessWidget {
           ),
         ),
         page: const LoginPage(),
+      ),
+      Task(
+        name: 'Family Tree',
+        widget: const FamilyTree(),
+        page: const FamilyTreePage(),
       ),
     ];
 

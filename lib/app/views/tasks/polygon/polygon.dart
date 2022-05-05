@@ -36,7 +36,7 @@ class MyTask extends CustomPainter {
 
     int sides = 5;
     double radius = minSize / 3;
-    double radians = 60.0;
+    double radians = 0.0;
 
     var path = Path();
 
@@ -48,9 +48,9 @@ class MyTask extends CustomPainter {
 
     path.moveTo(startPoint.dx + center.dx, startPoint.dy + center.dy);
 
-    for (int i = 1; i <= sides; i++) {
-      double x = radius * math.cos(radians + angle * i) + center.dx;
-      double y = radius * math.sin(radians + angle * i) + center.dy;
+    for (int i = 1; i <= 2; i++) {
+      double x = radius * math.cos(angle * i) + center.dx;
+      double y = radius * math.sin(angle * i) + center.dy;
       path.lineTo(x, y);
     }
     // path.close();
