@@ -48,7 +48,7 @@ class MyTask extends CustomPainter {
 
     path.moveTo(startPoint.dx + center.dx, startPoint.dy + center.dy);
 
-    for (int i = 1; i <= 2; i++) {
+    for (int i = 1; i <= sides; i++) {
       double x = radius * math.cos(angle * i) + center.dx;
       double y = radius * math.sin(angle * i) + center.dy;
       path.lineTo(x, y);
