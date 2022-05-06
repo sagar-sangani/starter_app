@@ -133,12 +133,6 @@ class MyTask extends CustomPainter {
     double radius = 30.0;
 
     final c2 = Path();
-
-    c2.drawCircle(radius);
-
-    var value1 = c2.drawSubNodes(count: 3, line: line, radius: radius);
-    c2.relativeMoveTo(2 * radius + line, 0);
-
     var angle = ((pi * 2)) / 4;
     double circleX = radius * cos(angle);
     double circleY = radius * sin(angle);
@@ -146,120 +140,130 @@ class MyTask extends CustomPainter {
     double lineX = line * cos(angle);
     double lineY = line * sin(angle);
 
-    var value2 =
-        c2.drawSubNodes(count: 4, line: line, radius: radius, varianceAngle: 0);
-    c2.relativeMoveTo(0, -2 * radius - line);
-    print('value2: ${(value2) * 180 / pi}');
+    c2.drawCircle(radius);
 
-    var value3 = c2.drawSubNodes(
-        count: 3, line: line, radius: radius, varianceAngle: value2);
-
-    print('value3: ${(2 * pi / 3) * 180 / pi}');
-
-    // c2.relativeMoveTo(
-    //   (2 * radius + line) * cos((value3) - value2),
-    //   (-2 * radius - line) * sin((value3) - value2),
-    // );
-    c2.shiftNode(
-      radius: radius,
-      line: line,
-      moveCount: 2,
-      totalCount: 3,
-      varianceAngle: value2,
-    );
-
-    c2.relativeLineTo(10, 10);
-    c2.relativeMoveTo(-10, -10);
-
-    // c2.relativeMoveTo(
-    //   (2 * radius + line) * cos(((value3) - pi * 1.5)),
-    //   (-2 * radius - line) * sin(((value3) - pi * 1.5)),
-    // );
-
-    // c2.relativeLineTo(10, 10);
-    // c2.relativeMoveTo(-10, -10);
-
-    var value4 = c2.drawSubNodes(
+    c2.drawSubNodes(
       count: 3,
       line: line,
       radius: radius,
-      varianceAngle: value3,
+      varianceAngle: pi / 2,
     );
 
     c2.shiftNode(
-      radius: radius,
-      line: line,
       moveCount: 1,
       totalCount: 3,
-      varianceAngle: value3,
-    );
-
-    c2.relativeLineTo(10, 10);
-    c2.relativeMoveTo(-10, -10);
-
-    print('value3: ${value3 * 180 / pi}');
-
-    var value5 = c2.drawSubNodes(
-      count: 8,
       line: line,
       radius: radius,
-      varianceAngle: value4,
+      varianceAngle: pi / 2,
+    );
+
+    c2.drawSubNodes(
+      count: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: (pi / 2 - (2 * pi / 3)).abs(),
     );
 
     c2.shiftNode(
-      radius: radius,
+      moveCount: 2,
+      totalCount: 3,
       line: line,
-      moveCount: 7,
-      totalCount: 8,
-      varianceAngle: value3,
+      radius: radius,
+      varianceAngle: (pi / 2 - (2 * pi / 3)).abs(),
     );
 
     c2.drawSubNodes(
       count: 4,
       line: line,
       radius: radius,
-      varianceAngle: value5,
+      varianceAngle: (pi / 2 - (2 * pi / 3)).abs(),
     );
 
-    // c2.relativeLineTo(10, 10);
-    // c2.relativeMoveTo(-10, -10);
+    c2.shiftNode(
+      moveCount: 2,
+      totalCount: 4,
+      line: line,
+      radius: radius,
+      varianceAngle: (pi / 2 - (2 * pi / 3)).abs(),
+    );
 
-    // c2.shiftNode(
-    //   radius: radius,
-    //   line: line,
-    //   moveCount: 4,
-    //   totalCount: 4,
-    //   varianceAngle: value3,
-    // );
+    c2.drawSubNodes(
+      count: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: (2 * pi / 3),
+    );
 
-    // c2.relativeLineTo(10, 10);
-    // c2.relativeMoveTo(-10, -10);
+    c2.shiftNode(
+      moveCount: 1,
+      totalCount: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: (2 * pi / 3),
+    );
 
-    // c2.drawSubNodes(
-    //   count: 3,
-    //   line: line,
-    //   radius: radius,
-    //   varianceAngle: value3,
-    // );
+    c2.drawSubNodes(
+      count: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: 2 * (pi / 2) - (2 * pi / 3),
+    );
 
-    // c2.relativeMoveTo(
-    //   (2 * radius + line) * cos(pi / 6),
-    //   (-2 * radius - line) * sin(pi / 6),
-    // );
+    c2.shiftNode(
+      moveCount: 1,
+      totalCount: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: 2 * (pi / 2) - (2 * pi / 3),
+    );
 
-    // var value5 = c2.drawSubNodes(
-    //     count: 4, line: line, radius: radius, varianceAngle: value4);
+    c2.drawSubNodes(
+      count: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: 4 * (pi / 2) - (2 * pi / 3),
+    );
 
-    // c2.relativeMoveTo(
-    //   (2 * radius + line) * cos(pi / 3),
-    //   (2 * radius + line) * sin(pi / 3),
-    // );
+    c2.shiftNode(
+      moveCount: 2,
+      totalCount: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: 4 * (pi / 2) - (2 * pi / 3),
+    );
 
-    // // c2.relativeLineTo(10, 10);
-    // line = 40;
+    c2.drawSubNodes(
+      count: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: 6 * (pi / 2) - (2 * pi / 3),
+    );
 
-    // var value6 = c2.drawSubNodes(
-    //     count: 5, line: line, radius: radius, varianceAngle: value5);
+    c2.shiftNode(
+      moveCount: 1,
+      totalCount: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: 6 * (pi / 2) - (2 * pi / 3),
+    );
+
+    c2.drawSubNodes(
+      count: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: 8 * (pi / 2) - (2 * pi / 3),
+    );
+
+    c2.shiftNode(
+      moveCount: 1,
+      totalCount: 3,
+      line: line,
+      radius: radius,
+      varianceAngle: 8 * (pi / 2) - (2 * pi / 3),
+    );
+
+    c2.relativeLineTo(10, 10);
+    c2.relativeMoveTo(-10, -10);
 
     canvas.drawPath(c2, paint);
   }
@@ -297,11 +301,6 @@ extension SubNodeExtension on Path {
       double lineX = line * cos(drawAngle);
       double lineY = line * sin(drawAngle);
 
-      print('circleX: ${circleX * 180 / pi}');
-      print('circleY: ${circleY * 180 / pi}');
-      print('lineX: ${lineX * 180 / pi}');
-      print('lineY: ${lineY * 180 / pi}');
-
       relativeMoveTo(circleX, circleY);
       relativeLineTo(lineX, lineY);
       drawAngleCircle(radius: radius, angle: drawAngle);
@@ -311,7 +310,7 @@ extension SubNodeExtension on Path {
     return angle + varianceAngle;
   }
 
-  shiftNode({
+  double shiftNode({
     required double radius,
     required double line,
     required int moveCount,
@@ -323,9 +322,26 @@ extension SubNodeExtension on Path {
     double angle = 2 * pi / totalCount;
     double moveAngle = angle * moveCount;
 
+    print('------------');
+    print({
+      'moveCount': moveCount,
+      'totalCount': totalCount,
+      'angle': angle.degrees,
+      'moveAngle': moveAngle.degrees,
+      'varianceAngle': varianceAngle.degrees,
+    });
+
     relativeMoveTo(
-      (2 * radius + line) * cos(((varianceAngle) - angle + moveAngle) + pi),
-      (-2 * radius - line) * sin(((varianceAngle) - angle + moveAngle) + pi),
+      (2 * radius + line) * cos(2 * pi - (angle + varianceAngle + moveAngle)),
+      (-2 * radius - line) * sin(2 * pi - (angle + varianceAngle + moveAngle)),
     );
+
+    return angle;
   }
+}
+
+extension DoubleExtension on double {
+  double get radians => this * pi / 180;
+
+  double get degrees => this * 180 / pi;
 }
