@@ -5,6 +5,8 @@ import 'package:starter_app/app/views/tasks/abcd/abcd.dart';
 import 'package:starter_app/app/views/tasks/abcd/abcd_page.dart';
 import 'package:starter_app/app/views/tasks/chitrakala/chitrakala.dart';
 import 'package:starter_app/app/views/tasks/chitrakala/chitrakala_page.dart';
+import 'package:starter_app/app/views/tasks/circle/circle.dart';
+import 'package:starter_app/app/views/tasks/circle/circle_page.dart';
 import 'package:starter_app/app/views/tasks/colour_shadding/color_shadding.dart';
 import 'package:starter_app/app/views/tasks/colour_shadding/color_shadding_page.dart';
 import 'package:starter_app/app/views/tasks/daglo/daglo.dart';
@@ -86,6 +88,11 @@ class HomeView extends StatelessWidget {
         name: 'Family Tree',
         widget: const FamilyTree(),
         page: const FamilyTreePage(),
+      ),
+      Task(
+        name: 'Circle',
+        widget: const Circle(),
+        page: const CirclePage(),
       ),
     ];
 
