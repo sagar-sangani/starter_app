@@ -72,50 +72,6 @@ extension CircleExtension on Path {
       radius: Radius.circular(radius),
     );
   }
-
-  // drawCircleLeft(double radius) {
-  //   relativeArcToPoint(
-  //     Offset(-radius * 2, 0),
-  //     radius: Radius.circular(radius),
-  //   );
-  //   relativeArcToPoint(
-  //     Offset(radius * 2, 0),
-  //     radius: Radius.circular(radius),
-  //   );
-  // }
-
-  // drawCircleRight(double radius) {
-  //   relativeArcToPoint(
-  //     Offset(radius * 2, 0),
-  //     radius: Radius.circular(radius),
-  //   );
-  //   relativeArcToPoint(
-  //     Offset(-radius * 2, 0),
-  //     radius: Radius.circular(radius),
-  //   );
-  // }
-
-  // drawCircleTop(double radius) {
-  //   relativeArcToPoint(
-  //     Offset(0, -radius * 2),
-  //     radius: Radius.circular(radius),
-  //   );
-  //   relativeArcToPoint(
-  //     Offset(0, radius * 2),
-  //     radius: Radius.circular(radius),
-  //   );
-  // }
-
-  // drawCircleBottom(double radius) {
-  //   relativeArcToPoint(
-  //     Offset(0, radius * 2),
-  //     radius: Radius.circular(radius),
-  //   );
-  //   relativeArcToPoint(
-  //     Offset(0, -radius * 2),
-  //     radius: Radius.circular(radius),
-  //   );
-  // }
 }
 
 class MyTask extends CustomPainter {
