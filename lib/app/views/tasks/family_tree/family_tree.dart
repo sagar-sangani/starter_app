@@ -31,6 +31,15 @@ class Tree {
     required this.startPoint,
     this.variance = 0,
   }) : assert(startPoint > 0);
+
+  @override
+  String toString() {
+    return {
+      'count': count,
+      'startPoint': startPoint,
+      'variance': variance,
+    }.toString();
+  }
 }
 
 class MyTask extends CustomPainter {
@@ -53,21 +62,55 @@ class MyTask extends CustomPainter {
       Tree(count: 3, startPoint: 1),
     ];
 
-    final c2 = Path();
+    final path = Path();
 
-    c2.drawCircle(radius);
+    drawTree(
+      path,
+      trees: trees,
+      line: line,
+      radius: radius,
+    );
+
+    final remainingTrees = backTo(
+      path,
+      trees: trees,
+      line: line,
+      radius: radius,
+      reverseCount: 1,
+    );
+
+    backTo(
+      path,
+      trees: remainingTrees,
+      line: line,
+      radius: radius,
+      reverseCount: 1,
+    );
+
+    path.relativeLineTo(10, 10);
+    path.relativeMoveTo(-10, -10);
+
+    canvas.drawPath(path, paint);
+  }
+
+  drawTree(
+    Path path, {
+    required List<Tree> trees,
+    required double line,
+    required double radius,
+  }) {
+    path.drawCircle(radius);
 
     double variance = 0;
-
     for (var tree in trees) {
-      c2.drawSubNodes(
+      path.drawSubNodes(
         count: tree.count,
         line: line,
         radius: radius,
         varianceAngle: variance,
       );
 
-      variance = c2.shiftNode(
+      variance = path.shiftNode(
         radius: radius,
         line: line,
         moveCount: tree.startPoint,
@@ -77,9 +120,28 @@ class MyTask extends CustomPainter {
 
       tree.variance = variance;
     }
+  }
 
-    for (var tree in trees.reversed) {
-      c2.shiftNode(
+  List<Tree> backTo(
+    Path path, {
+    required List<Tree> trees,
+    required double line,
+    required double radius,
+    required int reverseCount,
+  }) {
+    final reverseTrees = trees.reversed;
+
+    final treesToMoveBack = reverseTrees.where(
+      (element) => trees.reversed.toList().indexOf(element) < reverseCount,
+    );
+
+    // remaining trees
+    final remainingTrees = reverseTrees.where(
+      (element) => !treesToMoveBack.toList().contains(element),
+    );
+
+    for (var tree in treesToMoveBack) {
+      path.shiftNode(
         radius: radius,
         line: line,
         moveCount: 0,
@@ -88,73 +150,7 @@ class MyTask extends CustomPainter {
       );
     }
 
-    // c2.drawSubNodes(count: 3, line: line, radius: radius);
-
-    // double v1 = c2.shiftNode(
-    //   radius: radius,
-    //   line: line,
-    //   moveCount: 2,
-    //   totalCount: 3,
-    // );
-
-    // c2.drawSubNodes(
-    //   count: 4,
-    //   line: line,
-    //   radius: radius,
-    //   varianceAngle: v1,
-    // );
-
-    // double v2 = c2.shiftNode(
-    //   radius: radius,
-    //   line: line,
-    //   moveCount: 3,
-    //   totalCount: 4,
-    //   varianceAngle: v1,
-    // );
-
-    // c2.drawSubNodes(
-    //   count: 3,
-    //   line: line,
-    //   radius: radius,
-    //   varianceAngle: v2,
-    // );
-
-    // double v3 = c2.shiftNode(
-    //   radius: radius,
-    //   line: line,
-    //   moveCount: 1,
-    //   totalCount: 3,
-    //   varianceAngle: v2,
-    // );
-
-    // c2.shiftNode(
-    //   radius: radius,
-    //   line: line,
-    //   moveCount: 0,
-    //   totalCount: 3,
-    //   varianceAngle: v3,
-    // );
-
-    // c2.shiftNode(
-    //   radius: radius,
-    //   line: line,
-    //   moveCount: 0,
-    //   totalCount: 4,
-    //   varianceAngle: v2,
-    // );
-
-    // c2.shiftNode(
-    //   radius: radius,
-    //   line: line,
-    //   moveCount: 0,
-    //   totalCount: 3,
-    //   varianceAngle: v1,
-    // );
-
-    c2.relativeLineTo(10, 10);
-    c2.relativeMoveTo(-10, -10);
-
-    canvas.drawPath(c2, paint);
+    return remainingTrees.toList().reversed.toList();
   }
 
   @override
