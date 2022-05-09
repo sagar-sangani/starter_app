@@ -21,57 +21,16 @@ class FamilyTree extends StatelessWidget {
   }
 }
 
-extension CenterExtension on Path {
-  moveCenter(double width, double height) {
-    moveTo(width / 2, height / 2);
-  }
-}
+class Tree {
+  int count;
+  int startPoint;
+  double variance;
 
-extension LineExtension on Path {
-  drawLineRight(double line) {
-    relativeLineTo(line, 0);
-  }
-
-  drawLineLeft(double line) {
-    relativeLineTo(-line, 0);
-  }
-
-  drawLineTop(double line) {
-    relativeLineTo(0, -line);
-  }
-
-  drawLineBottom(double line) {
-    relativeLineTo(0, line);
-  }
-}
-
-extension CircleExtension on Path {
-  drawCircle(double radius) {
-    relativeMoveTo(radius, 0);
-    relativeArcToPoint(
-      Offset(-radius * 2, 0),
-      radius: Radius.circular(radius),
-    );
-    relativeArcToPoint(
-      Offset(radius * 2, 0),
-      radius: Radius.circular(radius),
-    );
-    relativeMoveTo(-radius, 0);
-  }
-
-  drawAngleCircle({required double radius, required double angle}) {
-    double circleX = radius * cos(angle - (2 * pi));
-    double circleY = radius * sin(angle - (2 * pi));
-
-    relativeArcToPoint(
-      Offset(2 * circleX, 2 * circleY),
-      radius: Radius.circular(radius),
-    );
-    relativeArcToPoint(
-      Offset(-2 * circleX, -2 * circleY),
-      radius: Radius.circular(radius),
-    );
-  }
+  Tree({
+    required this.count,
+    required this.startPoint,
+    this.variance = 0,
+  }) : assert(startPoint > 0);
 }
 
 class MyTask extends CustomPainter {
@@ -88,108 +47,109 @@ class MyTask extends CustomPainter {
     double height = size.height;
     double radius = line / 4;
 
+    List<Tree> trees = [
+      Tree(count: 3, startPoint: 2),
+      Tree(count: 4, startPoint: 3),
+      Tree(count: 3, startPoint: 1),
+    ];
+
     final c2 = Path();
 
     c2.drawCircle(radius);
 
-    c2.drawSubNodes(count: 4, line: line, radius: radius);
+    double variance = 0;
 
-    double v1 = c2.shiftNode(
-      radius: radius,
-      line: line,
-      moveCount: 3,
-      totalCount: 4,
-    );
+    for (var tree in trees) {
+      c2.drawSubNodes(
+        count: tree.count,
+        line: line,
+        radius: radius,
+        varianceAngle: variance,
+      );
 
-    c2.drawSubNodes(
-      count: 3,
-      line: line,
-      radius: radius,
-      varianceAngle: v1,
-    );
+      variance = c2.shiftNode(
+        radius: radius,
+        line: line,
+        moveCount: tree.startPoint,
+        totalCount: tree.count,
+        varianceAngle: variance,
+      );
 
-    double v2 = c2.shiftNode(
-      radius: radius,
-      line: line,
-      moveCount: 1,
-      totalCount: 3,
-      varianceAngle: v1,
-    );
+      tree.variance = variance;
+    }
 
-    c2.drawSubNodes(
-      count: 6,
-      line: line,
-      radius: radius,
-      varianceAngle: v2,
-    );
+    for (var tree in trees.reversed) {
+      c2.shiftNode(
+        radius: radius,
+        line: line,
+        moveCount: 0,
+        totalCount: tree.count,
+        varianceAngle: tree.variance,
+      );
+    }
 
-    double v3 = c2.shiftNode(
-      radius: radius,
-      line: line,
-      moveCount: 4,
-      totalCount: 6,
-      varianceAngle: v2,
-    );
+    // c2.drawSubNodes(count: 3, line: line, radius: radius);
 
-    c2.drawSubNodes(
-      count: 4,
-      line: line,
-      radius: radius,
-      varianceAngle: v3,
-    );
+    // double v1 = c2.shiftNode(
+    //   radius: radius,
+    //   line: line,
+    //   moveCount: 2,
+    //   totalCount: 3,
+    // );
 
-    double v4 = c2.shiftNode(
-      radius: radius,
-      line: line,
-      moveCount: 2,
-      totalCount: 4,
-      varianceAngle: v3,
-    );
+    // c2.drawSubNodes(
+    //   count: 4,
+    //   line: line,
+    //   radius: radius,
+    //   varianceAngle: v1,
+    // );
 
-    c2.drawSubNodes(
-      count: 8,
-      line: line,
-      radius: radius,
-      varianceAngle: v4,
-    );
+    // double v2 = c2.shiftNode(
+    //   radius: radius,
+    //   line: line,
+    //   moveCount: 3,
+    //   totalCount: 4,
+    //   varianceAngle: v1,
+    // );
 
-    double v5 = c2.shiftNode(
-      radius: radius,
-      line: line,
-      moveCount: 4,
-      totalCount: 8,
-      varianceAngle: v4,
-    );
+    // c2.drawSubNodes(
+    //   count: 3,
+    //   line: line,
+    //   radius: radius,
+    //   varianceAngle: v2,
+    // );
 
-    c2.drawSubNodes(
-      count: 3,
-      line: line,
-      radius: radius,
-      varianceAngle: v5,
-    );
+    // double v3 = c2.shiftNode(
+    //   radius: radius,
+    //   line: line,
+    //   moveCount: 1,
+    //   totalCount: 3,
+    //   varianceAngle: v2,
+    // );
 
-    double v6 = c2.shiftNode(
-      radius: radius,
-      line: line,
-      moveCount: 2,
-      totalCount: 3,
-      varianceAngle: v5,
-    );
+    // c2.shiftNode(
+    //   radius: radius,
+    //   line: line,
+    //   moveCount: 0,
+    //   totalCount: 3,
+    //   varianceAngle: v3,
+    // );
 
-    c2.drawSubNodes(
-      count: 4,
-      line: line,
-      radius: radius,
-      varianceAngle: v6,
-    );
+    // c2.shiftNode(
+    //   radius: radius,
+    //   line: line,
+    //   moveCount: 0,
+    //   totalCount: 4,
+    //   varianceAngle: v2,
+    // );
 
-    double v7 = c2.shiftNode(
-      radius: radius,
-      line: line,
-      moveCount: 2,
-      totalCount: 4,
-      varianceAngle: v6,
-    );
+    // c2.shiftNode(
+    //   radius: radius,
+    //   line: line,
+    //   moveCount: 0,
+    //   totalCount: 3,
+    //   varianceAngle: v1,
+    // );
 
     c2.relativeLineTo(10, 10);
     c2.relativeMoveTo(-10, -10);
@@ -255,4 +215,57 @@ extension DoubleExtension on double {
   double get radians => this * pi / 180;
 
   double get degrees => this * 180 / pi;
+}
+
+extension CenterExtension on Path {
+  moveCenter(double width, double height) {
+    moveTo(width / 2, height / 2);
+  }
+}
+
+extension LineExtension on Path {
+  drawLineRight(double line) {
+    relativeLineTo(line, 0);
+  }
+
+  drawLineLeft(double line) {
+    relativeLineTo(-line, 0);
+  }
+
+  drawLineTop(double line) {
+    relativeLineTo(0, -line);
+  }
+
+  drawLineBottom(double line) {
+    relativeLineTo(0, line);
+  }
+}
+
+extension CircleExtension on Path {
+  drawCircle(double radius) {
+    relativeMoveTo(radius, 0);
+    relativeArcToPoint(
+      Offset(-radius * 2, 0),
+      radius: Radius.circular(radius),
+    );
+    relativeArcToPoint(
+      Offset(radius * 2, 0),
+      radius: Radius.circular(radius),
+    );
+    relativeMoveTo(-radius, 0);
+  }
+
+  drawAngleCircle({required double radius, required double angle}) {
+    double circleX = radius * cos(angle - (2 * pi));
+    double circleY = radius * sin(angle - (2 * pi));
+
+    relativeArcToPoint(
+      Offset(2 * circleX, 2 * circleY),
+      radius: Radius.circular(radius),
+    );
+    relativeArcToPoint(
+      Offset(-2 * circleX, -2 * circleY),
+      radius: Radius.circular(radius),
+    );
+  }
 }
