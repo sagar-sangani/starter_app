@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+part 'family_tree_extensions.dart';
 
 class FamilyTree extends StatelessWidget {
   const FamilyTree({Key? key}) : super(key: key);
@@ -25,11 +26,13 @@ class Tree {
   int count;
   int startPoint;
   double variance;
+  List<Tree> subTrees;
 
   Tree({
     required this.count,
-    required this.startPoint,
+    this.startPoint = 1,
     this.variance = 0,
+    this.subTrees = const [],
   }) : assert(startPoint > 0);
 
   @override
@@ -38,6 +41,7 @@ class Tree {
       'count': count,
       'startPoint': startPoint,
       'variance': variance,
+      'subTrees': subTrees,
     }.toString();
   }
 }
@@ -57,9 +61,16 @@ class MyTask extends CustomPainter {
     double radius = line / 4;
 
     List<Tree> trees = [
-      Tree(count: 3, startPoint: 2),
-      Tree(count: 4, startPoint: 3),
-      Tree(count: 3, startPoint: 1),
+      Tree(count: 4, startPoint: 4),
+      Tree(
+        count: 3,
+        startPoint: 1,
+        subTrees: [
+          Tree(count: 3),
+          // Tree(count: 4),
+        ],
+      ),
+      // Tree(count: 4, startPoint: 2),
     ];
 
     final path = Path();
@@ -71,21 +82,21 @@ class MyTask extends CustomPainter {
       radius: radius,
     );
 
-    final remainingTrees = backTo(
-      path,
-      trees: trees,
-      line: line,
-      radius: radius,
-      reverseCount: 1,
-    );
+    // final remainingTrees = backTo(
+    //   path,
+    //   trees: trees,
+    //   line: line,
+    //   radius: radius,
+    //   reverseCount: 1,
+    // );
 
-    backTo(
-      path,
-      trees: remainingTrees,
-      line: line,
-      radius: radius,
-      reverseCount: 1,
-    );
+    // backTo(
+    //   path,
+    //   trees: remainingTrees,
+    //   line: line,
+    //   radius: radius,
+    //   reverseCount: 1,
+    // );
 
     path.relativeLineTo(10, 10);
     path.relativeMoveTo(-10, -10);
@@ -93,15 +104,17 @@ class MyTask extends CustomPainter {
     canvas.drawPath(path, paint);
   }
 
+  // Method declarations
+
   drawTree(
     Path path, {
     required List<Tree> trees,
     required double line,
     required double radius,
+    double variance = 0,
   }) {
     path.drawCircle(radius);
 
-    double variance = 0;
     for (var tree in trees) {
       path.drawSubNodes(
         count: tree.count,
@@ -110,15 +123,43 @@ class MyTask extends CustomPainter {
         varianceAngle: variance,
       );
 
-      variance = path.shiftNode(
-        radius: radius,
-        line: line,
-        moveCount: tree.startPoint,
-        totalCount: tree.count,
-        varianceAngle: variance,
-      );
+      if (tree.subTrees.isNotEmpty) {
+        variance = path.shiftNode(
+          radius: radius,
+          line: line,
+          moveCount: tree.startPoint,
+          totalCount: tree.count,
+          varianceAngle: variance,
+        );
 
-      tree.variance = variance;
+        drawTree(
+          path,
+          trees: tree.subTrees,
+          line: line,
+          radius: radius,
+          variance: variance,
+        );
+
+        backTo(
+          path,
+          trees: tree.subTrees,
+          line: line,
+          radius: radius,
+          reverseCount: tree.subTrees.length,
+        );
+
+        tree.variance = variance;
+      } else {
+        variance = path.shiftNode(
+          radius: radius,
+          line: line,
+          moveCount: tree.startPoint,
+          totalCount: tree.count,
+          varianceAngle: variance,
+        );
+
+        tree.variance = variance;
+      }
     }
   }
 
@@ -156,112 +197,5 @@ class MyTask extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
-  }
-}
-
-extension SubNodeExtension on Path {
-  void drawSubNodes({
-    required int count,
-    required double line,
-    required double radius,
-    int ignorePlace = 0,
-    double varianceAngle = 0,
-  }) {
-    var angle = ((pi * 2) / count);
-
-    for (var i = 0; i < count; i++) {
-      if (i + 1 == ignorePlace || (varianceAngle != 0 && i == 0)) {
-        continue;
-      }
-      var drawAngle = angle * i + (varianceAngle);
-      double circleX = radius * cos(drawAngle);
-      double circleY = radius * sin(drawAngle);
-
-      double lineX = line * cos(drawAngle);
-      double lineY = line * sin(drawAngle);
-
-      relativeMoveTo(circleX, circleY);
-      relativeLineTo(lineX, lineY);
-      drawAngleCircle(radius: radius, angle: drawAngle);
-
-      relativeMoveTo(-lineX - circleX, -lineY - circleY);
-    }
-  }
-
-  double shiftNode({
-    required double radius,
-    required double line,
-    required int moveCount,
-    required int totalCount,
-    double varianceAngle = 0,
-  }) {
-    double angle = 2 * pi / totalCount;
-    double moveAngle = angle * moveCount;
-
-    relativeMoveTo(
-      (2 * radius + line) * cos((2 * pi) - (varianceAngle + moveAngle)),
-      (-2 * radius - line) * sin((2 * pi) - (varianceAngle + moveAngle)),
-    );
-
-    return (varianceAngle + pi) + (angle * moveCount);
-  }
-}
-
-extension DoubleExtension on double {
-  double get radians => this * pi / 180;
-
-  double get degrees => this * 180 / pi;
-}
-
-extension CenterExtension on Path {
-  moveCenter(double width, double height) {
-    moveTo(width / 2, height / 2);
-  }
-}
-
-extension LineExtension on Path {
-  drawLineRight(double line) {
-    relativeLineTo(line, 0);
-  }
-
-  drawLineLeft(double line) {
-    relativeLineTo(-line, 0);
-  }
-
-  drawLineTop(double line) {
-    relativeLineTo(0, -line);
-  }
-
-  drawLineBottom(double line) {
-    relativeLineTo(0, line);
-  }
-}
-
-extension CircleExtension on Path {
-  drawCircle(double radius) {
-    relativeMoveTo(radius, 0);
-    relativeArcToPoint(
-      Offset(-radius * 2, 0),
-      radius: Radius.circular(radius),
-    );
-    relativeArcToPoint(
-      Offset(radius * 2, 0),
-      radius: Radius.circular(radius),
-    );
-    relativeMoveTo(-radius, 0);
-  }
-
-  drawAngleCircle({required double radius, required double angle}) {
-    double circleX = radius * cos(angle - (2 * pi));
-    double circleY = radius * sin(angle - (2 * pi));
-
-    relativeArcToPoint(
-      Offset(2 * circleX, 2 * circleY),
-      radius: Radius.circular(radius),
-    );
-    relativeArcToPoint(
-      Offset(-2 * circleX, -2 * circleY),
-      radius: Radius.circular(radius),
-    );
   }
 }
