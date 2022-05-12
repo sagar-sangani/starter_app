@@ -1,5 +1,56 @@
 part of 'family_tree.dart';
 
+extension TreeExtension on Path {
+  drawTree({
+    required Tree tree,
+    required double line,
+    required double radius,
+  }) {
+    drawSubNodes(
+      count: tree.count,
+      line: line,
+      radius: radius,
+      varianceAngle: tree.variance,
+    );
+
+    for (var subTree in tree.subTrees) {
+      var index = tree.subTrees.indexOf(subTree);
+
+      subTree.variance = shiftNode(
+        radius: radius,
+        line: line,
+        moveCount: index + 1,
+        totalCount: tree.count,
+        varianceAngle: tree.variance,
+      );
+
+      if (subTree.count == 0) {
+        shiftNode(
+          radius: radius,
+          line: line,
+          moveCount: 0,
+          totalCount: tree.count,
+          varianceAngle: subTree.variance,
+        );
+      } else {
+        drawTree(
+          tree: subTree,
+          line: line,
+          radius: radius,
+        );
+      }
+    }
+
+    shiftNode(
+      radius: radius,
+      line: line,
+      moveCount: 0,
+      totalCount: tree.count,
+      varianceAngle: tree.variance,
+    );
+  }
+}
+
 extension SubNodeExtension on Path {
   void drawSubNodes({
     required int count,
