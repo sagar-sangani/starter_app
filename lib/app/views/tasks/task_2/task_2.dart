@@ -224,17 +224,13 @@ class Task2 extends StatelessWidget {
                         TWColors.white.withRed(32).withGreen(76).withBlue(253),
                     jobRole: 'Product Designer',
                     companyName: 'Ethereum Foundation',
-                    textBottonColor:
-                        TWColors.white.withRed(45).withGreen(91).withBlue(253),
                     jobLocation: 'India',
                     ctc: '\$195,00',
                   ),
-                  JobCard(
+                  const JobCard(
                     cardColor: TWColors.black,
                     jobRole: 'UI Designer',
                     companyName: 'Unknown Company',
-                    textBottonColor:
-                        TWColors.white.withRed(28).withGreen(34).withBlue(42),
                     jobLocation: 'US',
                     ctc: '\$175,00',
                   ),
@@ -338,7 +334,7 @@ class JobCard extends StatelessWidget {
   final String companyName;
   final String jobLocation;
   final String ctc;
-  final Color textBottonColor;
+
   const JobCard({
     Key? key,
     required this.cardColor,
@@ -346,7 +342,6 @@ class JobCard extends StatelessWidget {
     required this.companyName,
     required this.jobLocation,
     required this.ctc,
-    required this.textBottonColor,
   }) : super(key: key);
 
   @override
@@ -436,7 +431,7 @@ class JobCard extends StatelessWidget {
                     ),
                   ),
                   decoration: ShapeDecoration(
-                    color: textBottonColor,
+                    color: TWColors.white.withOpacity(0.1),
                     shape: SmoothRectangleBorder(
                       borderRadius: SmoothBorderRadius(
                         cornerRadius: 5,
@@ -444,11 +439,6 @@ class JobCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // decoration: BoxDecoration(
-                  //   borderRadius: BorderRadius.circular(5),
-                  //   color:
-                  //       TWColors.white.withRed(45).withGreen(91).withBlue(253),
-                  // ),
                 ),
               ),
               const SizedBox(width: 15),
@@ -464,7 +454,7 @@ class JobCard extends StatelessWidget {
                         TextStyle(fontSize: 10, color: TWColors.slate.shade300),
                   ),
                   decoration: ShapeDecoration(
-                    color: textBottonColor,
+                    color: TWColors.white.withOpacity(0.1),
                     shape: SmoothRectangleBorder(
                       borderRadius: SmoothBorderRadius(
                         cornerRadius: 5,
@@ -489,7 +479,7 @@ class JobCard extends StatelessWidget {
                     ),
                   ),
                   decoration: ShapeDecoration(
-                    color: textBottonColor,
+                    color: TWColors.white.withOpacity(0.1),
                     shape: SmoothRectangleBorder(
                       borderRadius: SmoothBorderRadius(
                         cornerRadius: 5,

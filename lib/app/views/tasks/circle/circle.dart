@@ -17,10 +17,10 @@ class Circle extends StatelessWidget {
       child: CustomPaint(
         size: MediaQuery.of(context).size,
         painter: CirclesPainter(
-          circles: 4,
+          circles: 6,
           progress: 100,
           showDots: true,
-          showPath: false,
+          showPath: true,
         ),
       ),
     );
@@ -42,7 +42,7 @@ class CirclesPainter extends CustomPainter {
     ..style = PaintingStyle.stroke
     ..strokeWidth = 5.0;
 
-  double radius = 80;
+  double radius = 50;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -71,7 +71,7 @@ class CirclesPainter extends CustomPainter {
   Path createPath() {
     var path = Path();
     int n = circles.toInt();
-    var range = List<int>.generate(n, (i) => i + 1);
+    var range = List<int>.generate(n, (i) => i);
     double angle = 2 * pi / n;
     for (int i in range) {
       double x = radius * cos(i * angle);
@@ -158,49 +158,7 @@ class CirclesPainter extends CustomPainter {
 //     );
 //   }
 
-//   // drawCircleLeft(double radius) {
-//   //   relativeArcToPoint(
-//   //     Offset(-radius * 2, 0),
-//   //     radius: Radius.circular(radius),
-//   //   );
-//   //   relativeArcToPoint(
-//   //     Offset(radius * 2, 0),
-//   //     radius: Radius.circular(radius),
-//   //   );
-//   // }
 
-//   // drawCircleRight(double radius) {
-//   //   relativeArcToPoint(
-//   //     Offset(radius * 2, 0),
-//   //     radius: Radius.circular(radius),
-//   //   );
-//   //   relativeArcToPoint(
-//   //     Offset(-radius * 2, 0),
-//   //     radius: Radius.circular(radius),
-//   //   );
-//   // }
-
-//   // drawCircleTop(double radius) {
-//   //   relativeArcToPoint(
-//   //     Offset(0, -radius * 2),
-//   //     radius: Radius.circular(radius),
-//   //   );
-//   //   relativeArcToPoint(
-//   //     Offset(0, radius * 2),
-//   //     radius: Radius.circular(radius),
-//   //   );
-//   // }
-
-//   // drawCircleBottom(double radius) {
-//   //   relativeArcToPoint(
-//   //     Offset(0, radius * 2),
-//   //     radius: Radius.circular(radius),
-//   //   );
-//   //   relativeArcToPoint(
-//   //     Offset(0, -radius * 2),
-//   //     radius: Radius.circular(radius),
-//   //   );
-//   // }
 // }
 
 // class MyTask extends CustomPainter {
@@ -257,95 +215,7 @@ class CirclesPainter extends CustomPainter {
 //       varianceAngle: (2 * pi) - (pi / 2),
 //     );
 
-//     // c2.drawSubNodes(
-//     //   count: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: (2 * pi) - (pi / 6) - (2 * pi / 3),
-//     // );
 
-//     // c2.shiftNode(
-//     //   moveCount: 1,
-//     //   totalCount: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: (2 * pi) - (pi / 6) - (2 * pi / 3),
-//     // );
-
-//     // c2.drawSubNodes(
-//     //   count: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle:(pi + ((2 * pi / 3) - (pi / 2))),
-//     // );
-
-//     // c2.shiftNode(
-//     //   moveCount: 3,
-//     //   totalCount: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: (2 * pi / 3),
-//     // );
-
-//     // c2.drawSubNodes(
-//     //   count: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: 2 * (pi / 2) - (2 * pi / 3),
-//     // );
-
-//     // c2.shiftNode(
-//     //   moveCount: 3,
-//     //   totalCount: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: 2 * (pi / 2) - (2 * pi / 3),
-//     // );
-
-//     // c2.drawSubNodes(
-//     //   count: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: 4 * (pi / 2) - (2 * pi / 3),
-//     // );
-
-//     // c2.shiftNode(
-//     //   moveCount: 2,
-//     //   totalCount: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: 4 * (pi / 2) - (2 * pi / 3),
-//     // );
-
-//     // c2.drawSubNodes(
-//     //   count: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: 6 * (pi / 2) - (2 * pi / 3),
-//     // );
-
-//     // c2.shiftNode(
-//     //   moveCount: 1,
-//     //   totalCount: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: 6 * (pi / 2) - (2 * pi / 3),
-//     // );
-
-//     // c2.drawSubNodes(
-//     //   count: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: 8 * (pi / 2) - (2 * pi / 3),
-//     // );
-
-//     // c2.shiftNode(
-//     //   moveCount: 1,
-//     //   totalCount: 3,
-//     //   line: line,
-//     //   radius: radius,
-//     //   varianceAngle: 8 * (pi / 2) - (2 * pi / 3),
-//     // );
 
 //     c2.relativeLineTo(10, 10);
 //     c2.relativeMoveTo(-10, -10);
@@ -368,11 +238,6 @@ class CirclesPainter extends CustomPainter {
 //     double varianceAngle = 0,
 //   }) {
 //     var angle = ((pi * 2) / count);
-
-//     // 1. Move to line 1 initial point
-//     // 2. Draw line 1
-//     // 3. Draw angle circle
-//     // 4. Move back to line's initial point
 
 //     for (var i = 0; i < count; i++) {
 //       if (i + 1 == ignorePlace) {

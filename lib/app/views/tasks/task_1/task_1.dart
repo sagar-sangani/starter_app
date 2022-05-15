@@ -66,25 +66,20 @@ class Task1 extends StatelessWidget {
                           fit: FlexFit.tight,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              const SizedBox(height: 2),
-                              Container(
-                                child: const Text(
-                                  'UI/UX Designer',
-                                  maxLines: 1,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(fontSize: 10.0),
-                                ),
+                            children: const [
+                              SizedBox(height: 2),
+                              Text(
+                                'UI/UX Designer',
+                                maxLines: 1,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(fontSize: 10.0),
                               ),
-                              const SizedBox(height: 5),
-                              Container(
-                                child: const Text(
-                                  'Uniswap',
-                                  maxLines: 1,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(fontSize: 8.0),
-                                ),
+                              SizedBox(height: 5),
+                              Text(
+                                'Uniswap',
+                                maxLines: 1,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(fontSize: 8.0),
                               ),
                             ],
                           ),
