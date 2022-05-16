@@ -19,8 +19,21 @@ class Task3 extends StatelessWidget {
               // color: TWColors.slate.shade300,
               height: 30,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  Icon(BootstrapIcons.arrow_left),
+                  Icon(
+                    BootstrapIcons.arrow_left,
+                    size: 20,
+                    color: TWColors.black,
+                  ),
+                  Text(
+                    'Browse Jobs',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  Icon(BootstrapIcons.sliders, size: 18),
                 ],
               ),
             ),
@@ -29,7 +42,7 @@ class Task3 extends StatelessWidget {
                 top: 10,
                 left: 20,
                 right: 20,
-                bottom: 35,
+                bottom: 25,
               ),
               child: Container(
                 height: 60,
@@ -54,9 +67,10 @@ class Task3 extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(right: 10),
-                        child: Icon(Icons.search, size: 30),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Icon(Icons.search,
+                            size: 30, color: TWColors.black.withOpacity(0.7)),
                       ),
                       Flexible(
                         flex: 1,
@@ -66,12 +80,13 @@ class Task3 extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 18,
                               color: TWColors.slate[800],
-                              fontWeight: FontWeight.w500),
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: Container(
+                          padding: const EdgeInsets.all(4),
                           child: const Icon(BootstrapIcons.x, size: 22),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -83,7 +98,230 @@ class Task3 extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              width: double.infinity,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    JobDetailsSliderButton(
+                      title: Text(
+                        'Jobs',
+                        style: TextStyle(
+                            color: TWColors.slate.shade50,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      backgroundColor: TWColors.black,
+                    ),
+                    JobDetailsSliderButton(
+                      title: Text(
+                        'Companies',
+                        style: TextStyle(
+                            color: TWColors.slate.shade500,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 16),
+                      ),
+                    ),
+                    JobDetailsSliderButton(
+                      title: Text(
+                        'Salaries',
+                        style: TextStyle(
+                            color: TWColors.slate.shade500,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              // color: TWColors.blue.shade100,
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 30, bottom: 20),
+              child: const Text(
+                '45 Blockchain Jobs',
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(
+                padding: const EdgeInsets.only(right: 20),
+                // color: TWColors.blue,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      JobCard(
+                        cardColor: TWColors.slate.shade100,
+                        companyIcon: Icon(
+                          BootstrapIcons.sliders,
+                          color: TWColors.slate.shade50,
+                        ),
+                        companyIconBackgrounColor: TWColors.white
+                            .withRed(46)
+                            .withGreen(94)
+                            .withBlue(254),
+                        bookmarkIcon: const Icon(
+                          BootstrapIcons.bookmark,
+                          size: 17,
+                          color: TWColors.slate,
+                        ),
+                        jobRole: const Text(
+                          'Jr. Game Designer',
+                          style: TextStyle(
+                              fontSize: 19,
+                              color: TWColors.black,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        companyName: const Text(
+                          'Axie Infinity',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        department: const Text(
+                          'Design',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        typeOfJob: const Text(
+                          'Full Time',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        jobLocation: const Text(
+                          'Ho Chi Minh City',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        ctc: '\$180,000',
+                        ctcTextStyle: const TextStyle(
+                            color: TWColors.black, fontWeight: FontWeight.w800),
+                      ),
+                      const SizedBox(height: 20),
+                      JobCard(
+                        cardColor: TWColors.slate.shade100,
+                        companyIcon: Icon(
+                          BootstrapIcons.sliders,
+                          color: TWColors.slate.shade50,
+                        ),
+                        companyIconBackgrounColor: TWColors.white
+                            .withRed(5)
+                            .withGreen(27)
+                            .withBlue(78),
+                        bookmarkIcon: const Icon(
+                          BootstrapIcons.bookmark_fill,
+                          size: 17,
+                          color: TWColors.blue,
+                        ),
+                        jobRole: const Text(
+                          'Digital Disigner (NFT)',
+                          style: TextStyle(
+                              fontSize: 19,
+                              color: TWColors.black,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        companyName: const Text(
+                          'Crypto.com',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        department: const Text(
+                          'Design',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        typeOfJob: const Text(
+                          'Full Time',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        jobLocation: const Text(
+                          'Hong Kong',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        ctc: '\$210,000',
+                        ctcTextStyle: const TextStyle(
+                            color: TWColors.black, fontWeight: FontWeight.w800),
+                      ),
+                      const SizedBox(height: 20),
+                      JobCard(
+                        cardColor: TWColors.slate.shade100,
+                        companyIcon: Icon(
+                          BootstrapIcons.sliders,
+                          color: TWColors.slate.shade50,
+                        ),
+                        companyIconBackgrounColor: TWColors.white
+                            .withRed(253)
+                            .withGreen(104)
+                            .withBlue(132),
+                        bookmarkIcon: const Icon(
+                          BootstrapIcons.bookmark,
+                          size: 17,
+                          color: TWColors.slate,
+                        ),
+                        jobRole: const Text(
+                          'Digital Disigner (NFT)',
+                          style: TextStyle(
+                              fontSize: 19,
+                              color: TWColors.black,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        companyName: const Text(
+                          'Axie Infinity',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        department: const Text(
+                          'Design',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        typeOfJob: const Text(
+                          'Full Time',
+                          style: TextStyle(color: TWColors.slate),
+                        ),
+                        jobLocation: const Text('Ho Chi Minh City',
+                            style: TextStyle(color: TWColors.slate)),
+                        ctc: '\$180,000',
+                        ctcTextStyle: const TextStyle(
+                            color: TWColors.black, fontWeight: FontWeight.w800),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class JobDetailsSliderButton extends StatelessWidget {
+  final Text title;
+  Color? backgroundColor;
+  JobDetailsSliderButton({
+    Key? key,
+    required this.title,
+    this.backgroundColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(left: 20),
+      padding: const EdgeInsets.only(
+        top: 8,
+        bottom: 8,
+        left: 15,
+        right: 15,
+      ),
+      child: title,
+      decoration: ShapeDecoration(
+        color: backgroundColor ?? TWColors.slate.shade50,
+        shape: SmoothRectangleBorder(
+          side: BorderSide(
+            color: TWColors.slate.withOpacity(0.3),
+          ),
+          borderRadius: SmoothBorderRadius(
+            cornerRadius: 8,
+            cornerSmoothing: 1.0,
+          ),
         ),
       ),
     );
@@ -92,18 +330,30 @@ class Task3 extends StatelessWidget {
 
 class JobCard extends StatelessWidget {
   final Color cardColor;
-  final String jobRole;
-  final String companyName;
-  final String jobLocation;
+  final Icon companyIcon;
+  final Color companyIconBackgrounColor;
+  final Icon bookmarkIcon;
+  final Text jobRole;
+  final Text companyName;
+  final Text department;
+  final Text typeOfJob;
+  final Text jobLocation;
   final String ctc;
+  final TextStyle ctcTextStyle;
 
   const JobCard({
     Key? key,
     required this.cardColor,
+    required this.companyIcon,
+    required this.companyIconBackgrounColor,
+    required this.bookmarkIcon,
     required this.jobRole,
     required this.companyName,
+    required this.department,
+    required this.typeOfJob,
     required this.jobLocation,
     required this.ctc,
+    required this.ctcTextStyle,
   }) : super(key: key);
 
   @override
@@ -121,137 +371,116 @@ class JobCard extends StatelessWidget {
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Row(
-            children: [
-              Flexible(
-                flex: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(5),
-                  child: const Icon(BootstrapIcons.activity),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color:
-                        TWColors.white.withRed(46).withGreen(94).withBlue(254),
+          IntrinsicHeight(
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    child: companyIcon,
+                    decoration: ShapeDecoration(
+                      color: companyIconBackgrounColor,
+                      shape: SmoothRectangleBorder(
+                        borderRadius: SmoothBorderRadius(
+                          cornerRadius: 8,
+                          cornerSmoothing: 0.9,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
                         jobRole,
-                        style: TextStyle(
-                            fontSize: 16, color: TWColors.slate.shade50),
-                      ),
-                      Text(
                         companyName,
-                        style: TextStyle(
-                            fontSize: 10, color: TWColors.slate.shade300),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 0,
-                child: Container(
-                  padding: const EdgeInsets.only(left: 5, bottom: 10),
-                  child: const Icon(
-                    BootstrapIcons.bookmark,
-                    size: 15,
-                    color: TWColors.white,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                Flexible(
+                  flex: 0,
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 5, bottom: 10),
+                    child: bookmarkIcon,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                  child: Center(
-                    child: Text(
-                      'Design',
-                      style: TextStyle(
-                          fontSize: 10, color: TWColors.slate.shade300),
+          SizedBox(
+            width: double.infinity,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Center(
+                      child: department,
                     ),
-                  ),
-                  decoration: ShapeDecoration(
-                    color: TWColors.white.withOpacity(0.1),
-                    shape: SmoothRectangleBorder(
-                      borderRadius: SmoothBorderRadius(
-                        cornerRadius: 5,
-                        cornerSmoothing: 0.9,
+                    decoration: ShapeDecoration(
+                      color: TWColors.white.withOpacity(0.1),
+                      shape: SmoothRectangleBorder(
+                        side: BorderSide(color: TWColors.slate.shade300),
+                        borderRadius: SmoothBorderRadius(
+                          cornerRadius: 5,
+                          cornerSmoothing: 0.9,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(width: 15),
-              Flexible(
-                fit: FlexFit.tight,
-                flex: 0,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                  child: Text(
-                    'Full Time',
-                    style:
-                        TextStyle(fontSize: 10, color: TWColors.slate.shade300),
-                  ),
-                  decoration: ShapeDecoration(
-                    color: TWColors.white.withOpacity(0.1),
-                    shape: SmoothRectangleBorder(
-                      borderRadius: SmoothBorderRadius(
-                        cornerRadius: 5,
-                        cornerSmoothing: 0.9,
+                  const SizedBox(width: 15),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: typeOfJob,
+                    decoration: ShapeDecoration(
+                      color: TWColors.white.withOpacity(0.1),
+                      shape: SmoothRectangleBorder(
+                        side: BorderSide(color: TWColors.slate.shade300),
+                        borderRadius: SmoothBorderRadius(
+                          cornerRadius: 5,
+                          cornerSmoothing: 0.9,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(width: 15),
-              Flexible(
-                flex: 0,
-                fit: FlexFit.tight,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                  child: Center(
-                    child: Text(
-                      'Anywhere',
-                      style: TextStyle(
-                          fontSize: 10, color: TWColors.slate.shade300),
+                  const SizedBox(width: 15),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Center(
+                      child: jobLocation,
                     ),
-                  ),
-                  decoration: ShapeDecoration(
-                    color: TWColors.white.withOpacity(0.1),
-                    shape: SmoothRectangleBorder(
-                      borderRadius: SmoothBorderRadius(
-                        cornerRadius: 5,
-                        cornerSmoothing: 0.9,
+                    decoration: ShapeDecoration(
+                      color: TWColors.white.withOpacity(0.1),
+                      shape: SmoothRectangleBorder(
+                        side: BorderSide(color: TWColors.slate.shade300),
+                        borderRadius: SmoothBorderRadius(
+                          cornerRadius: 5,
+                          cornerSmoothing: 0.9,
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
           const SizedBox(height: 20),
           Row(
@@ -260,13 +489,9 @@ class JobCard extends StatelessWidget {
               Row(
                 children: [
                   Icon(BootstrapIcons.geo_alt,
-                      size: 14, color: TWColors.slate.shade100),
+                      size: 14, color: TWColors.slate.shade800),
                   const SizedBox(width: 5),
-                  Text(
-                    jobLocation,
-                    style:
-                        TextStyle(color: TWColors.slate.shade300, fontSize: 12),
-                  ),
+                  jobLocation,
                 ],
               ),
               RichText(
@@ -274,14 +499,11 @@ class JobCard extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: ctc,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: ctcTextStyle,
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: '/year',
-                      style: TextStyle(
-                          color: TWColors.slate.shade300, fontSize: 12),
+                      style: TextStyle(color: TWColors.slate, fontSize: 14),
                     ),
                   ],
                 ),
