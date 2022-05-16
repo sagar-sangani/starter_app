@@ -37,6 +37,8 @@ dependencies:
   google_fonts: ^2.3.2
   bootstrap_icons: ^1.8.1
   figma_squircle: ^0.5.3
+  integration_test:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
