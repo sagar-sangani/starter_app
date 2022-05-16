@@ -8,8 +8,6 @@ class Task2Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Task2(),
-    );
+    return Task2();
   }
 }

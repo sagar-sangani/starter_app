@@ -7,8 +7,6 @@ class Task3Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Task3(),
-    );
+    return Task3();
   }
 }
