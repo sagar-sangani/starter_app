@@ -222,16 +222,22 @@ class Task2 extends StatelessWidget {
                   JobCard(
                     cardColor:
                         TWColors.white.withRed(32).withGreen(76).withBlue(253),
+                    companyIcon: const Icon(BootstrapIcons.activity, size: 40),
                     jobRole: 'Product Designer',
+                    department: 'Design',
                     companyName: 'Ethereum Foundation',
                     jobLocation: 'India',
+                    typeOfJob: 'Full Time',
                     ctc: '\$195,00',
                   ),
                   const JobCard(
                     cardColor: TWColors.black,
+                    companyIcon: Icon(BootstrapIcons.activity),
                     jobRole: 'UI Designer',
+                    department: 'Design',
                     companyName: 'Unknown Company',
                     jobLocation: 'US',
+                    typeOfJob: 'Part Time',
                     ctc: '\$175,00',
                   ),
                 ],
@@ -320,7 +326,7 @@ class Task2 extends StatelessWidget {
                   size: 20,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -330,16 +336,22 @@ class Task2 extends StatelessWidget {
 
 class JobCard extends StatelessWidget {
   final Color cardColor;
+  final Icon companyIcon;
   final String jobRole;
   final String companyName;
+  final String department;
+  final String typeOfJob;
   final String jobLocation;
   final String ctc;
 
   const JobCard({
     Key? key,
     required this.cardColor,
+    required this.companyIcon,
     required this.jobRole,
     required this.companyName,
+    required this.department,
+    required this.typeOfJob,
     required this.jobLocation,
     required this.ctc,
   }) : super(key: key);
@@ -359,137 +371,138 @@ class JobCard extends StatelessWidget {
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Row(
-            children: [
-              Flexible(
-                flex: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(5),
-                  child: const Icon(BootstrapIcons.activity),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color:
-                        TWColors.white.withRed(46).withGreen(94).withBlue(254),
+          IntrinsicHeight(
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    child: companyIcon,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: TWColors.white
+                          .withRed(46)
+                          .withGreen(94)
+                          .withBlue(254),
+                    ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        jobRole,
-                        style: TextStyle(
-                            fontSize: 16, color: TWColors.slate.shade50),
-                      ),
-                      Text(
-                        companyName,
-                        style: TextStyle(
-                            fontSize: 10, color: TWColors.slate.shade300),
-                      ),
-                    ],
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(top: 0),
+                          child: Text(
+                            jobRole,
+                            style: TextStyle(
+                                fontSize: 16, color: TWColors.slate.shade50),
+                          ),
+                        ),
+                        Text(
+                          companyName,
+                          style: TextStyle(
+                              fontSize: 12, color: TWColors.slate.shade300),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Flexible(
-                flex: 0,
-                child: Container(
-                  padding: const EdgeInsets.only(left: 5, bottom: 10),
-                  child: const Icon(
-                    BootstrapIcons.bookmark,
-                    size: 15,
-                    color: TWColors.white,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                Flexible(
+                  flex: 0,
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 5, bottom: 10),
+                    child: const Icon(
+                      BootstrapIcons.bookmark,
+                      size: 15,
+                      color: TWColors.white,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                  child: Center(
+          SizedBox(
+            width: double.infinity,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Center(
+                      child: Text(
+                        department,
+                        style: TextStyle(
+                            fontSize: 12, color: TWColors.slate.shade300),
+                      ),
+                    ),
+                    decoration: ShapeDecoration(
+                      color: TWColors.white.withOpacity(0.1),
+                      shape: SmoothRectangleBorder(
+                        borderRadius: SmoothBorderRadius(
+                          cornerRadius: 5,
+                          cornerSmoothing: 0.9,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Text(
-                      'Design',
+                      typeOfJob,
                       style: TextStyle(
-                          fontSize: 10, color: TWColors.slate.shade300),
+                          fontSize: 12, color: TWColors.slate.shade300),
                     ),
-                  ),
-                  decoration: ShapeDecoration(
-                    color: TWColors.white.withOpacity(0.1),
-                    shape: SmoothRectangleBorder(
-                      borderRadius: SmoothBorderRadius(
-                        cornerRadius: 5,
-                        cornerSmoothing: 0.9,
+                    decoration: ShapeDecoration(
+                      color: TWColors.white.withOpacity(0.1),
+                      shape: SmoothRectangleBorder(
+                        borderRadius: SmoothBorderRadius(
+                          cornerRadius: 5,
+                          cornerSmoothing: 0.9,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(width: 15),
-              Flexible(
-                fit: FlexFit.tight,
-                flex: 0,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                  child: Text(
-                    'Full Time',
-                    style:
-                        TextStyle(fontSize: 10, color: TWColors.slate.shade300),
-                  ),
-                  decoration: ShapeDecoration(
-                    color: TWColors.white.withOpacity(0.1),
-                    shape: SmoothRectangleBorder(
-                      borderRadius: SmoothBorderRadius(
-                        cornerRadius: 5,
-                        cornerSmoothing: 0.9,
+                  const SizedBox(width: 15),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Center(
+                      child: Text(
+                        jobLocation,
+                        style: TextStyle(
+                            fontSize: 12, color: TWColors.slate.shade300),
+                      ),
+                    ),
+                    decoration: ShapeDecoration(
+                      color: TWColors.white.withOpacity(0.1),
+                      shape: SmoothRectangleBorder(
+                        borderRadius: SmoothBorderRadius(
+                          cornerRadius: 5,
+                          cornerSmoothing: 0.9,
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-              const SizedBox(width: 15),
-              Flexible(
-                flex: 0,
-                fit: FlexFit.tight,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                  child: Center(
-                    child: Text(
-                      'Anywhere',
-                      style: TextStyle(
-                          fontSize: 10, color: TWColors.slate.shade300),
-                    ),
-                  ),
-                  decoration: ShapeDecoration(
-                    color: TWColors.white.withOpacity(0.1),
-                    shape: SmoothRectangleBorder(
-                      borderRadius: SmoothBorderRadius(
-                        cornerRadius: 5,
-                        cornerSmoothing: 0.9,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
           const SizedBox(height: 20),
           Row(
