@@ -47,7 +47,7 @@ class Task3 extends StatelessWidget {
               child: Container(
                 height: 60,
                 decoration: ShapeDecoration(
-                  color: TWColors.slate.shade100,
+                  color: TWColors.slate.shade50,
                   shape: SmoothRectangleBorder(
                     borderRadius: SmoothBorderRadius(
                       cornerRadius: 15,
@@ -90,7 +90,7 @@ class Task3 extends StatelessWidget {
                           child: const Icon(BootstrapIcons.x, size: 22),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: TWColors.slate.shade300.withOpacity(0.7)),
+                              color: TWColors.slate.shade100),
                         ),
                       )
                     ],
@@ -360,7 +360,7 @@ class JobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 20),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
       decoration: ShapeDecoration(
         color: cardColor,
         shape: SmoothRectangleBorder(
@@ -374,50 +374,53 @@ class JobCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IntrinsicHeight(
-            child: Row(
-              children: [
-                Flexible(
-                  flex: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    child: companyIcon,
-                    decoration: ShapeDecoration(
-                      color: companyIconBackgrounColor,
-                      shape: SmoothRectangleBorder(
-                        borderRadius: SmoothBorderRadius(
-                          cornerRadius: 8,
-                          cornerSmoothing: 0.9,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Flexible(
+                    flex: 0,
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      child: companyIcon,
+                      decoration: ShapeDecoration(
+                        color: companyIconBackgrounColor,
+                        shape: SmoothRectangleBorder(
+                          borderRadius: SmoothBorderRadius(
+                            cornerRadius: 8,
+                            cornerSmoothing: 0.9,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Flexible(
-                  flex: 1,
-                  fit: FlexFit.tight,
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        jobRole,
-                        companyName,
-                      ],
+                  Flexible(
+                    flex: 1,
+                    fit: FlexFit.tight,
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          jobRole,
+                          companyName,
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Flexible(
-                  flex: 0,
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 5, bottom: 10),
-                    child: bookmarkIcon,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
+                  Flexible(
+                    flex: 0,
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 5, bottom: 10),
+                      child: bookmarkIcon,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 25),
@@ -426,7 +429,9 @@ class JobCard extends StatelessWidget {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  const SizedBox(width: 20),
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -483,32 +488,35 @@ class JobCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(BootstrapIcons.geo_alt,
-                      size: 14, color: TWColors.slate.shade800),
-                  const SizedBox(width: 5),
-                  jobLocation,
-                ],
-              ),
-              RichText(
-                text: TextSpan(
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
                   children: [
-                    TextSpan(
-                      text: ctc,
-                      style: ctcTextStyle,
-                    ),
-                    const TextSpan(
-                      text: '/year',
-                      style: TextStyle(color: TWColors.slate, fontSize: 14),
-                    ),
+                    Icon(BootstrapIcons.geo_alt,
+                        size: 14, color: TWColors.slate.shade800),
+                    const SizedBox(width: 5),
+                    jobLocation,
                   ],
                 ),
-              ),
-            ],
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: ctc,
+                        style: ctcTextStyle,
+                      ),
+                      const TextSpan(
+                        text: '/year',
+                        style: TextStyle(color: TWColors.slate, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -23,6 +23,7 @@ import 'package:starter_app/app/views/tasks/polygon/polygon_page.dart';
 import 'package:starter_app/app/views/tasks/task_1/task_1_page.dart';
 import 'package:starter_app/app/views/tasks/task_2/task_2_page.dart';
 import 'package:starter_app/app/views/tasks/task_3/task_3_page.dart';
+import 'package:starter_app/app/views/tasks/task_4/task_4_page.dart';
 import 'package:starter_app/app/views/tasks/triangle/triangle.dart';
 import 'package:starter_app/app/views/tasks/triangle/triangle_page.dart';
 
@@ -104,5 +105,10 @@ List<Task> TASK_LIST = [
     name: 'Task 3 Screen',
     widget: Container(),
     page: const Task3Page(),
+  ),
+  Task(
+    name: 'Task 4 Screen',
+    widget: Container(),
+    page: const Task4Page(),
   ),
 ];
