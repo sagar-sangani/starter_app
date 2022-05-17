@@ -20,6 +20,7 @@ class HomeView extends StatelessWidget {
           ...TASK_LIST
               .map(
                 (e) => GridItem(
+                  key: ValueKey(e.name),
                   serialNumber: TASK_LIST.indexOf(e) + 1,
                   name: e.name,
                   widget: e.widget,

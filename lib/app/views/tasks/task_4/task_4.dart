@@ -105,6 +105,7 @@ class _Task4State extends State<Task4> {
                                     const BorderSide(color: TWColors.black),
                                 borderRadius: BorderRadius.circular(15),
                               ),
+                              isDense: true,
                             ),
                           ),
                         ],
@@ -131,6 +132,7 @@ class _Task4State extends State<Task4> {
                                     const BorderSide(color: TWColors.black),
                                 borderRadius: BorderRadius.circular(15),
                               ),
+                              isDense: true,
                             ),
                           ),
                         ],
@@ -155,6 +157,7 @@ class _Task4State extends State<Task4> {
                           borderSide: const BorderSide(color: TWColors.black),
                           borderRadius: BorderRadius.circular(15),
                         ),
+                        isDense: true,
                       ),
                     ),
                   ],
@@ -162,6 +165,7 @@ class _Task4State extends State<Task4> {
                 const SizedBox(height: 20),
                 IntrinsicHeight(
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Flexible(
                         flex: 1,
@@ -177,8 +181,10 @@ class _Task4State extends State<Task4> {
                             ),
                             const SizedBox(height: 5),
                             TextField(
+                              key: const ValueKey('passwordInput'),
                               onChanged: (password) => _checkPassword(password),
                               obscureText: !_isVisible,
+                              obscuringCharacter: '.',
                               controller: passwordController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
@@ -186,6 +192,7 @@ class _Task4State extends State<Task4> {
                                       const BorderSide(color: TWColors.black),
                                   borderRadius: BorderRadius.circular(15),
                                 ),
+                                isDense: true,
                               ),
                             ),
                           ],
@@ -195,9 +202,6 @@ class _Task4State extends State<Task4> {
                         width: 10,
                       ),
                       Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        padding: const EdgeInsets.only(
-                            top: 5, bottom: 5, left: 5, right: 5),
                         child: IconButton(
                             splashRadius: 0.1,
                             icon: _isVisible
