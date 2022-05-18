@@ -111,29 +111,4 @@ List<Task> TASK_LIST = [
     widget: Container(),
     page: const Task4Page(),
   ),
-  Task(
-    name: 'Circle',
-    widget: const Circle(),
-    page: const CirclePage(),
-  ),
-  Task(
-    name: 'Circle',
-    widget: const Circle(),
-    page: const CirclePage(),
-  ),
-  Task(
-    name: 'Circle',
-    widget: const Circle(),
-    page: const CirclePage(),
-  ),
-  Task(
-    name: 'Circle',
-    widget: const Circle(),
-    page: const CirclePage(),
-  ),
-  Task(
-    name: 'Circle',
-    widget: const Circle(),
-    page: const CirclePage(),
-  ),
 ];
