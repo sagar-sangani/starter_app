@@ -3,7 +3,7 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starter_app/app/theme/tw_colors.dart';
-import 'package:starter_app/widgets/bottom_NavigationBar.dart';
+import 'package:starter_app/widgets/joblist_itemcard.dart';
 
 class Task2 extends StatelessWidget {
   const Task2({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class Task2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TWColors.slate.shade50,
-      bottomNavigationBar: const BNavigationBar(),
+      bottomNavigationBar: const CustomBottomNavBar(),
       body: SafeArea(
         child: Column(
           children: [
@@ -545,8 +545,8 @@ class JobCard extends StatelessWidget {
   }
 }
 
-class BNavigationBar extends StatelessWidget {
-  const BNavigationBar({
+class CustomBottomNavBar extends StatelessWidget {
+  const CustomBottomNavBar({
     Key? key,
   }) : super(key: key);
 

@@ -10,7 +10,7 @@ class Task3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TWColors.slate.shade50,
-      bottomNavigationBar: const BNavigationBar(),
+      bottomNavigationBar: const CustomBottomNavBar(),
       body: SafeArea(
         child: Column(
           children: [
@@ -524,8 +524,8 @@ class JobCard extends StatelessWidget {
   }
 }
 
-class BNavigationBar extends StatelessWidget {
-  const BNavigationBar({
+class CustomBottomNavBar extends StatelessWidget {
+  const CustomBottomNavBar({
     Key? key,
   }) : super(key: key);
 
