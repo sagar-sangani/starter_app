@@ -55,26 +55,35 @@ void main() {
       app.main();
       await tester.pumpAndSettle();
 
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(milliseconds: 1));
 
       await gotoTask(tester, TASK_LIST[14]);
 
       await Future.delayed(const Duration(seconds: 2));
       final passwordField = find.byKey(const ValueKey('passwordInput'));
 
-      const password = '12345678901234';
+      const testCases = [
+        '1234',
+        'abcd',
+        'Abc123',
+        'Af*124Bgo9',
+        '1Acd456X',
+        '#Abc1243*',
+      ];
 
-      int cursorCount = 0;
+      for (var i = 0; i < testCases.length; i++) {
+        var checkCase = testCases[i];
+        int cursorCount = 0;
+        for (var value in checkCase.split('')) {
+          await Future.delayed(const Duration(milliseconds: 100));
+          await tester.enterText(
+              passwordField, checkCase.substring(0, cursorCount + 1));
+          await tester.pumpAndSettle();
 
-      for (var value in password.split('')) {
-        await Future.delayed(const Duration(milliseconds: 300));
-        await tester.enterText(
-            passwordField, password.substring(0, cursorCount + 1));
+          cursorCount++;
+        }
         await tester.pumpAndSettle();
-
-        cursorCount++;
       }
-      await tester.pumpAndSettle();
 
       await Future.delayed(const Duration(seconds: 3));
     });

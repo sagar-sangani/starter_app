@@ -2,6 +2,7 @@ import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_app/app/theme/tw_colors.dart';
+import 'package:starter_app/widgets/password_check_format.dart';
 
 class Task4 extends StatefulWidget {
   const Task4({Key? key}) : super(key: key);
@@ -237,131 +238,35 @@ class _Task4State extends State<Task4> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      IntrinsicHeight(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _isPasswordHasEightCharacter
-                                ? const Icon(BootstrapIcons.check_circle_fill,
-                                    size: 18, color: TWColors.green)
-                                : const Icon(BootstrapIcons.x_circle_fill,
-                                    size: 18, color: TWColors.red),
-                            const SizedBox(width: 10),
-                            const Flexible(
-                              fit: FlexFit.tight,
-                              child: Text(
-                                'Should include at least 8 character.',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ],
-                        ),
+                      PasswordCheckFormat(
+                        condition: _isPasswordHasEightCharacter,
+                        note: 'Should include at least 8 character.',
                       ),
                       const SizedBox(height: 15),
-                      IntrinsicHeight(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _hasPasswordStartWithAlpabetCharacter
-                                ? const Icon(BootstrapIcons.check_circle_fill,
-                                    size: 18, color: TWColors.green)
-                                : const Icon(BootstrapIcons.x_circle_fill,
-                                    size: 18, color: TWColors.red),
-                            const SizedBox(width: 10),
-                            const Flexible(
-                              fit: FlexFit.tight,
-                              child: Text(
-                                'Should start with an alphabet.',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ],
-                        ),
+                      PasswordCheckFormat(
+                        condition: _hasPasswordStartWithAlpabetCharacter,
+                        note: 'Should start with an alphabet.',
                       ),
                       const SizedBox(height: 15),
-                      IntrinsicHeight(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _hasPasswordOneUppercase
-                                ? const Icon(BootstrapIcons.check_circle_fill,
-                                    size: 18, color: TWColors.green)
-                                : const Icon(BootstrapIcons.x_circle_fill,
-                                    size: 18, color: TWColors.red),
-                            const SizedBox(width: 10),
-                            const Flexible(
-                              fit: FlexFit.tight,
-                              child: Text(
-                                'Include at least one Uppercase character.',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ],
-                        ),
+                      PasswordCheckFormat(
+                        condition: _hasPasswordOneUppercase,
+                        note: 'Include at least one Uppercase character.',
                       ),
                       const SizedBox(height: 15),
-                      IntrinsicHeight(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _hasPasswordOneLowercase
-                                ? const Icon(BootstrapIcons.check_circle_fill,
-                                    size: 18, color: TWColors.green)
-                                : const Icon(BootstrapIcons.x_circle_fill,
-                                    size: 18, color: TWColors.red),
-                            const SizedBox(width: 10),
-                            const Flexible(
-                              fit: FlexFit.tight,
-                              child: Text(
-                                'Include at least one Lowercase character.',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ],
-                        ),
+                      PasswordCheckFormat(
+                        note: 'Include at least one Lowercase character.',
+                        condition: _hasPasswordOneLowercase,
                       ),
                       const SizedBox(height: 15),
-                      IntrinsicHeight(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _hasPasswordOneDigit
-                                ? const Icon(BootstrapIcons.check_circle_fill,
-                                    size: 18, color: TWColors.green)
-                                : const Icon(BootstrapIcons.x_circle_fill,
-                                    size: 18, color: TWColors.red),
-                            const SizedBox(width: 10),
-                            const Flexible(
-                              fit: FlexFit.tight,
-                              child: Text(
-                                'Include at least one Digit.',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ],
-                        ),
+                      PasswordCheckFormat(
+                        condition: _hasPasswordOneDigit,
+                        note: 'Include at least one Digit.',
                       ),
                       const SizedBox(height: 15),
-                      IntrinsicHeight(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _hasPasswordOneSpecialCharacter
-                                ? const Icon(BootstrapIcons.check_circle_fill,
-                                    size: 18, color: TWColors.green)
-                                : const Icon(BootstrapIcons.x_circle_fill,
-                                    size: 18, color: TWColors.red),
-                            const SizedBox(width: 10),
-                            const Flexible(
-                              fit: FlexFit.tight,
-                              child: Text(
-                                'Include at least one special character [\$.,-,_?]',
-                                style: TextStyle(fontSize: 16),
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                          ],
-                        ),
+                      PasswordCheckFormat(
+                        condition: _hasPasswordOneSpecialCharacter,
+                        note:
+                            'Include at least one special character [\$.,-,_?]',
                       ),
                     ],
                   ),
